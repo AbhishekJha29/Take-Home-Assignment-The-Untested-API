@@ -98,7 +98,7 @@ Since an empty string `""` is falsy in JavaScript, the condition evaluates to `f
 Replace the presence check from checking truthiness to checking for explicit presence (`!== undefined`).
 
 ### Status
-- Fixed ✅
+- Fixed 
 
 ---
 
