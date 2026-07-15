@@ -36,6 +36,7 @@ const create = ({ title, description = '', status = 'todo', priority = 'medium',
     status,
     priority,
     dueDate,
+    assignee: null,
     completedAt: null,
     createdAt: new Date().toISOString(),
   };
@@ -76,6 +77,24 @@ const completeTask = (id) => {
   return updated;
 };
 
+/**
+ * Assigns a task to a user.
+ * If the task is already assigned, the new assignee will overwrite the previous assignee.
+ */
+const assignTask = (id, assignee) => {
+  const task = findById(id);
+  if (!task) return null;
+
+  const updated = {
+    ...task,
+    assignee,
+  };
+
+  const index = tasks.findIndex((t) => t.id === id);
+  tasks[index] = updated;
+  return updated;
+};
+
 const _reset = () => {
   tasks = [];
 };
@@ -90,5 +109,6 @@ module.exports = {
   update,
   remove,
   completeTask,
+  assignTask,
   _reset,
 };
